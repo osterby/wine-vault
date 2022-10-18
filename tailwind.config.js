@@ -21,6 +21,7 @@ module.exports = {
           'skin-hero-body': '#1F2010',
           'skin-bg-yellow': '#FCEFC5',
           'skin-bg-red': '#941B0C',
+          'skin-bg-purple' : '#343344',
         },
         backgroundImage: {
           'footer-pattern': "url('../public/vineyard_long.png')",

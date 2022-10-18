@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import Nav from '../components/Nav';
 import NFTBanner from '../components/NFTBanner';
-import SoulboundBanner from '../components/NFTBanner';
 
 const Home: NextPage = () => {
   return (
@@ -18,14 +17,43 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="p-6 min-h-screen bg-gradient-to-t from-skin-bg-yellow to-skin-bg-red">
+      {/** 
+       * p-6 padding: 1.5rem; * 24px * https://tailwindcss.com/docs/padding
+       * min--screen minimum height min-height: 100vh; https://tailwindcss.com/docs/min-height#setting-the-minimum-height
+       * bg-gradient-to-t 
+       *  from-skin-bg-yellow 
+       *  via-?? 
+       *  to-skin-bg-red
+       */}
+      <div className="p-6 
+                      min-h-screen 
+                      bg-gradient-to-t 
+                      from-skin-bg-yellow 
+                      via-skin-bg-red
+                      to-skin-bg-purple
+                      ">
         <Nav />
         <div className="p-6"></div>
-        <main className="flex flex-col font-medium items-center gap-6 justify-between relative">
+        {/**
+         * flex - Sets as flexbox
+         * flex-col - flex in columns, positioned vertically
+         * font-medium - 
+         * items-center - aligns to the center of the cross axis items-start would be along the top
+         * gap-6 - gap between the rows and columns
+         * justify-between - pushes the left and right items as far wide as they can go
+         * relative - positioning elements
+         */}
+        <main className="flex 
+                        flex-col 
+                        font-medium 
+                        items-center 
+                        gap-6 
+                        justify-between 
+                        relative">
           <Hero />
           <NFTBanner />
         </main>
-        <div className="p-6"></div>
+
       </div>
       <Footer />
     </>
