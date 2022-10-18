@@ -37,7 +37,7 @@ export default function Nav() {
                                     <div className="p-2"></div>
                                     <p
                                         onClick={show}
-                                        className="font-semibold text-sm text-gray-800 tracking-wide underline cursor-pointer transition-all hover:text-opacity-80"
+                                        className="font-semibold text-sm text-gray-400 tracking-wide underline cursor-pointer transition-all hover:text-opacity-80"
                                     >
                                         {isConnected
                                             ? ensName
