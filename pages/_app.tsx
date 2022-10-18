@@ -1,13 +1,19 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { WagmiConfig, createClient } from 'wagmi';
+import { configureChains, chain, WagmiConfig, createClient } from 'wagmi';
+import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { ConnectKitProvider, getDefaultClient } from 'connectkit';
 
 const alchemyId = process.env.ALCHEMY_ID;
 
+const { chains, provider, webSocketProvider } = configureChains(
+    [chain.goerli],
+    [alchemyProvider({apiKey: alchemyId})],
+  )
+
 const client = createClient(
     getDefaultClient({
-        appName: 'Free Range Dao',
+        appName: 'Wine Vault',
         alchemyId,
     })
 );
