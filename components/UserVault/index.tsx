@@ -1,14 +1,32 @@
 {/* TODO Abstract the button stuff out of this and NAV */}
 import { ConnectKitButton } from 'connectkit';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAccount } from 'wagmi';
 import Image from 'next/image';
 import * as bottleBadge from '../../public/images/BottleBadge@1x.png';
 import NFTBanner from '../NFTBanner';
 
+const { log } = console;
+
 export default function Vault() {
+
     const router = useRouter();
     const { address, isConnected, isConnecting, isDisconnected } = useAccount();
+    const [vault, setVault] = useState("");
+    log("Vault: ", vault);
+
+    const handleSubmit = (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+        const payload = {
+            vault,
+            address
+        }
+        log("Payload: ", payload);
+
+        // TODO: send data (to centralised server || to contract)
+    }
+
     {
         /* TODO: check address to see if it's white listed before redirects, if not white list redirect to email subscription*/
     }
@@ -50,8 +68,10 @@ export default function Vault() {
                                     focus:ring-offset-transparent 
                                     focus:ring-offset-2"
                         id="valutName"
+                        placeholder="some-name"
+                        value={vault}
+                        onChange={({ target }) => setVault(target?.value)}
                         type="text"
-                        placeholder="amber-dialectic"
                     />
                     <button className="shadow-[4px_4px_0_0_rgba(30,30,30)] 
                                         hover:translate-x-1 
@@ -66,8 +86,10 @@ export default function Vault() {
                                         font-semibold 
                                         bg-skin-button-yellow  
                                         hover:bg-white 
-                                        normal-case">
-                        Name your first Vault
+                                        normal-case"
+                            onClick={handleSubmit}            
+                                        >
+                        Name your Vault
                     </button>
                 </div>
             </div>
