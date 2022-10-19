@@ -6,6 +6,7 @@ import { useAccount } from 'wagmi';
 import Image from 'next/image';
 import * as bottleBadge from '../../public/images/BottleBadge@1x.png';
 import NFTBanner from '../NFTBanner';
+import axios from 'axios';
 
 const { log } = console;
 
@@ -14,22 +15,30 @@ export default function Vault() {
     const router = useRouter();
     const { address, isConnected, isConnecting, isDisconnected } = useAccount();
     const [vault, setVault] = useState("");
-    log("Vault: ", vault);
 
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
+    const handler = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         const payload = {
             vault,
             address
         }
+
+        //TODO Validate form entry
+
         log("Payload: ", payload);
 
-        // TODO: send data (to centralised server || to contract)
+        try {
+            const { data } = await axios({
+                url: "/api/vaultadd",
+                method: "POST",
+                data: payload
+            });
+
+        } catch (error) {
+            
+        }
     }
 
-    {
-        /* TODO: check address to see if it's white listed before redirects, if not white list redirect to email subscription*/
-    }
     if (isConnected)
         return (
         <div className="flex flex-col md:flex-row justify-between items-center p-8 max-w-xl bg-skin-yellow border-4 border-[#1E1E1E] rounded-md border-solid shadow-[12px_12px_0_0_rgba(30,30,30)] gap-8 z-10">
@@ -87,7 +96,7 @@ export default function Vault() {
                                         bg-skin-button-yellow  
                                         hover:bg-white 
                                         normal-case"
-                            onClick={handleSubmit}            
+                            onClick={handler}            
                                         >
                         Name your Vault
                     </button>

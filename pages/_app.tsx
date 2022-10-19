@@ -4,7 +4,10 @@ import { configureChains, chain, WagmiConfig, createClient } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { ConnectKitProvider, getDefaultClient } from 'connectkit';
 
+const { log } = console;
 const alchemyId = process.env.ALCHEMY_ID;
+const AIRTABLE_BASE = process.env.AIRTABLE_BASE;
+const AIRTABLE_KEY = process.env.AIRTABLE_KEY;
 
 const { chains, provider, webSocketProvider } = configureChains(
     [chain.goerli],

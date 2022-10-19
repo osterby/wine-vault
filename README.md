@@ -1,3 +1,50 @@
+# Wine-Vault Specifics
+
+## git
+
+In git the `develop` branch is the working branch. You should make feature branches with the code from Aha! to implement changes. Check them back into develop when they run and then we'll merge `develop` to `master` when we go to release.
+
+Remember the commit messages should complete the sentence `Merging this will {your commit msg}`.
+
+## Chain - Goerli Testnet
+
+Configure Alchemy ID in `.env.local`
+
+`ALCHEMY_ID = xxxxxxxx`
+
+## Offchain Storage
+
+We'll use AirTable for off-chain storage in this dApp. It is free, but it is rate limited to 5 requests per second per base. If we exceed this rate, you will receive a 429 status code and will need to wait 30 seconds before subsequent requests will succeed. We should handle some rate limiting in serverSideProps if we can.
+
+So configure an AirTable API Key and other IDs in `.env.local`
+
+```
+AIRTABLE_KEY = xxxxxxxx
+AIRTABLE_BASE = xxxxxxxx
+AIRTABLE_VAULT_TABLE = xxxxxxxx
+```
+
+Off-chain storage is for a speed boost, but should be considered a cache of what's on chain and a store for private data that shouldn't go on chain.
+
+Primarily the reference data for types of bottles of wine goes on chain as well as any market information about pricing.
+
+The ownership of instances of bottles stays private until the owner decides to mint a utility NFT at which point the data goes as an NFT.
+
+##
+
+This is Next.js TypeScript with Dev Dependencies
+
+- TailwindCSS for styling, with PostCSS supporting Tailwind
+
+And regular Dependencies
+
+- axios for web requests
+- connectkit for the wallet connection UI
+- wagmi for chain connection configuration
+- ethers.js for EVM
+
+# Boilerplate Doco from `create-next-app`
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
