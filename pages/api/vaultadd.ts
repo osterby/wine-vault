@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios';
 
-const { log, info } = console;
+const { log, info, warn } = console;
 
 type Vault = {
   vault: string,
@@ -55,38 +55,38 @@ export default async function vaultAdd(
         return res.status(200).json({ msg:request.data });
       }
       case 429: {
-        log("P2 INCIDENT - Rate limiting error returned.");
+        warn("P2 INCIDENT - Rate limiting error returned.");
         // TODO: Active Alert Required
         return res.status(429).json({ msg:"Rate Limit Reached" });
       }
       case 402: {
-        log("P1 INCIDENT - Airtable Payment Issue encountered");
+        warn("P1 INCIDENT - Airtable Payment Issue encountered");
         // TODO: Active Alert Required
         return res.status(request.status).json({ msg:request.statusText });
       }
       case 500: {
-        log("P1 INCIDENT OUTWARD - Internal Server Error - The server encountered an unexpected condition.");
+        warn("P1 INCIDENT OUTWARD - Internal Server Error - The server encountered an unexpected condition.");
         // TODO: Active Alert Required
-        log(/** Payload */);
-        log(reqPayload);
-        log(/** End Payload */);
+        warn(/** Payload */);
+        warn(reqPayload);
+        warn(/** End Payload */);
         return res.status(request.status).json({ msg:request.statusText });
       }
       case 502: {
-        log("P1 INCIDENT OUTWARD - Bad Gateway Airtable's servers are restarting or an unexpected outage is in progress. Requests are safe to retry.");
+        warn("P1 INCIDENT OUTWARD - Bad Gateway Airtable's servers are restarting or an unexpected outage is in progress. Requests are safe to retry.");
         // TODO: Active Alert Required
-        log(/** Payload */);
-        log(reqPayload);
-        log(/** End Payload */);
+        warn(/** Payload */);
+        warn(reqPayload);
+        warn(/** End Payload */);
 
         return res.status(request.status).json({ msg:request.statusText });
       }
       case 503: {
-        log("P1 INCIDENT - Service Unavailable - The server could not process your request in time. The server could be temporarily unavailable, or it could have timed out processing your request. You should retry the request with backoffs.");
+        warn("P1 INCIDENT - Service Unavailable - The server could not process your request in time. The server could be temporarily unavailable, or it could have timed out processing your request. You should retry the request with backoffs.");
         // TODO: Active Alert Required
-        log(/** Payload */);
-        log(reqPayload);
-        log(/** End Payload */);
+        warn(/** Payload */);
+        warn(reqPayload);
+        warn(/** End Payload */);
         return res.status(request.status).json({ msg:request.statusText });
       }
 
@@ -96,12 +96,11 @@ export default async function vaultAdd(
       }
     }
 
-
   } catch (error) {
-    log(error);
-    log(/** Payload */);
-    log(reqPayload);
-    log(/** End Payload */);
+    warn(error);
+    warn(/** Payload */);
+    warn(reqPayload);
+    warn(/** End Payload */);
     return res.status(500).json({ msg:"Internal Error" });
   }
 }
