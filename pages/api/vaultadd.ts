@@ -4,11 +4,6 @@ import axios from 'axios';
 
 const { log, info, warn } = console;
 
-type Vault = {
-  vault: string,
-  address: string,
-}
-
 type Data = {
   msg: string
 }
