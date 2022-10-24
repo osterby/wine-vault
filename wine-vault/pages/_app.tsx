@@ -9,6 +9,9 @@ const alchemyId = process.env.ALCHEMY_ID;
 const AIRTABLE_BASE = process.env.AIRTABLE_BASE;
 const AIRTABLE_KEY = process.env.AIRTABLE_KEY;
 
+log(AIRTABLE_BASE);
+
+
 const { chains, provider, webSocketProvider } = configureChains(
     [chain.goerli],
     [alchemyProvider({apiKey: alchemyId})],

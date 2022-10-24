@@ -6,6 +6,8 @@ import Hero from '../components/Hero';
 import Nav from '../components/Nav';
 import NFTBanner from '../components/NFTBanner';
 
+
+
 const Home: NextPage = () => {
   return (
     <>

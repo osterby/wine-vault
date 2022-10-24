@@ -4,8 +4,14 @@ import Image from 'next/image'
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import UserVault from '../../components/UserVault';
+import { useRouter } from 'next/router';
+import { useAccount } from 'wagmi';
 
 const Vault: NextPage = () => {
+  
+  const router = useRouter();
+  const { address, isConnected, isConnecting, isDisconnected } = useAccount();
+  
   return (
     <>
       <Head>
