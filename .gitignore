@@ -2,19 +2,23 @@
 
 # dependencies
 /node_modules
-/.pnp
+/wine-vault/node_modules
+/wine-vault/.pnp
 .pnp.js
 
 # testing
 /coverage
+/wine-vault/coverage
 
 # next.js
+/wine-vault/.next/
+/wine-vault/out/
 /.next/
 /out/
 
 # production
+/wine-vault/build
 /build
-
 # misc
 .DS_Store
 *.pem
