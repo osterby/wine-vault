@@ -2,9 +2,12 @@
 
 # dependencies
 /node_modules
+**/node_modules
 /wine-vault/node_modules
 /wine-vault/.pnp
+/scaffold-eth/.pnp
 .pnp.js
+
 
 # testing
 /coverage
@@ -22,6 +25,7 @@
 # misc
 .DS_Store
 *.pem
+.env*
 
 # debug
 npm-debug.log*
@@ -38,3 +42,40 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# hardhat files
+/scaffold-eth/packages/subgraph/generated
+/scaffold-eth/packages/subgraph/abis/*
+/scaffold-eth/packages/hardhat/*.txt
+**/aws.json
+
+/scaffold-eth/packages/hardhat/artifacts*
+/scaffold-eth/packages/hardhat/deployments
+/scaffold-eth/packages/react-app/src/contracts/*
+/scaffold-eth/!packages/react-app/src/contracts/external_contracts.js
+/scaffold-eth/packages/hardhat/cache*
+/scaffold-eth/packages/**/data
+/scaffold-eth/!packages/react-app/src/contracts/contracts.js
+
+# ts
+/scaffold-eth/packages/hardhat-ts/cache
+
+# secrets
+.secret
+
+/scaffold-eth/packages/subgraph/networks.json
+tenderly.yaml
+
+# yarn / eslint
+.yarn/cache
+.yarn/install-state.gz
+.yarn/build-state.yml
+.eslintcache
+
+# Local Netlify folder
+.netlify
+*.tsbuildinfo
+*.stackdump
+
+# doc directory
+/doc
